@@ -36,3 +36,4 @@ Route.post(':school_id/:category_id/create_videos', 'GalleryVideosController.cre
 Route.post('/search', 'GalleryVideosController.search_video')
 Route.post('/search/:catid', 'GalleryVideosController.search_by_catid')
 Route.put('update_views/:id', 'GalleryVideosController.upate_videos_views')
+Route.get('show_views', 'GalleryVideosController.show_views')

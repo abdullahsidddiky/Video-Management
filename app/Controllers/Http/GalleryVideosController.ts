@@ -98,4 +98,10 @@ export default class GalleryVideosController {
     }
     return 'no match found'
   }
+  public async show_views({ request }: HttpContextContract) {
+    const video = await Database.query()
+      .from('gallery_videos')
+      .select('views_count')
+      .orderBy('DECS')
+  }
 }
