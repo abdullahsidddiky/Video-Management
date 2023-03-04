@@ -5,6 +5,12 @@ export default class GalleryCategory extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
+  @column()
+  public category_name: string
+
+  @column()
+  public school_id: number
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
