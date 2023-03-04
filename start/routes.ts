@@ -18,6 +18,7 @@
 |
 */
 
+import { Request } from '@adonisjs/core/build/standalone'
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.get('/', async ({ view }) => {
@@ -33,3 +34,4 @@ Route.get(':school_id/read_cat', 'GalleryCategoriesController.read_cat')
 
 Route.post(':school_id/:category_id/create_videos', 'GalleryVideosController.create_video')
 Route.post('/search', 'GalleryVideosController.search_video')
+Route.post('/search/:catid', 'GalleryVideosController.search_by_catid')

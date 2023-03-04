@@ -76,4 +76,11 @@ export default class GalleryVideosController {
       return posts
     }
   }
+  public async search_by_catid({ request }: HttpContextContract) {
+    const validator = schema.create({
+      id: schema.number(),
+    })
+    const payload = await request.validate({ schema: validator })
+    console.log(payload)
+  }
 }
