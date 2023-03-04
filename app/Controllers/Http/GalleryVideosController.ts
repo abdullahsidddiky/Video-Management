@@ -83,4 +83,19 @@ export default class GalleryVideosController {
     const payload = await request.validate({ schema: validator })
     console.log(payload)
   }
+
+  public async upate_videos_views({ request }: HttpContextContract) {
+    const validator = schema.create({
+      views: schema.number([rules.unsigned()]),
+    })
+    const v = request.params()
+    const payload = await request.validate({ schema: validator })
+    const video = await GalleryVideo.findBy('id', Number(v.id))
+    if (video) {
+      video.views_count = payload.views
+      await video.save()
+      return video
+    }
+    return 'no match found'
+  }
 }
