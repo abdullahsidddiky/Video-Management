@@ -1,5 +1,6 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
+import GalleryCategory from './GalleryCategory'
 
 export default class GalleryVideo extends BaseModel {
   @column({ isPrimary: true })
@@ -37,4 +38,6 @@ export default class GalleryVideo extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+  @belongsTo(() => GalleryCategory)
+  public gallery_category: BelongsTo<typeof GalleryCategory>
 }
