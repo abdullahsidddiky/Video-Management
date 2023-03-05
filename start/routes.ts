@@ -24,6 +24,7 @@ Route.get('/', async ({ view }) => {
   return view.render('welcome')
 })
 
-Route.group(() => {
+/*Route.group(() => {
   Route.get('/read', 'VideoGalleriesController.read')
 }).prefix('something/video_galllery')
+*/
