@@ -14,7 +14,20 @@ export default class VideoLibraryController {
   }
 
   public async createVideoLibrary(ctx: HttpContextContract) {
-    const u = await this.videolibraryValidator.validateVideoLibraryCreateSchema(ctx)
-    //return this.videolibraryService.createVideoLibraryNew(ctx)
+    await this.videolibraryValidator.validateVideoLibraryCreateSchema(ctx)
+    return this.videolibraryService.createVideoLibraryNew(ctx)
+  }
+
+  public async updateVideoLibrary(ctx: HttpContextContract) {
+    await this.videolibraryValidator.validateVideoLibraryUpdateSchema(ctx)
+    return this.videolibraryService.updateVideoLibrary(ctx)
+  }
+  public async deleteVideoLibrary(ctx: HttpContextContract) {
+    await this.videolibraryValidator.validateVideoLibraryDeleteSchema(ctx)
+    return this.videolibraryService.deleteVideoLibrary(ctx)
+  }
+  public async readVideoLibrary(ctx: HttpContextContract) {
+    await this.videolibraryValidator.validateVideoLibraryReadSchema(ctx)
+    return this.videolibraryService.readVideoLibrary(ctx)
   }
 }

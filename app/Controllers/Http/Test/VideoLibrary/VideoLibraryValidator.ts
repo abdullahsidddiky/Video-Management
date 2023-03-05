@@ -44,6 +44,7 @@ export default class VideoLibraryValidator {
   //update method
   public async validateVideoLibraryUpdateSchema(ctx: HttpContextContract) {
     const VideoLibraryUpdateSchema = schema.create({
+      id: schema.number(),
       library_name: schema.string({}, [
         rules.unique({ table: 'video_libraries', column: 'library_name' }),
       ]),
@@ -65,6 +66,25 @@ export default class VideoLibraryValidator {
 
   //delete method
   public async validateVideoLibraryDeleteSchema(ctx: HttpContextContract) {
+    const VideoLibraryDeleteSchema = schema.create({
+      id: schema.number(),
+    })
+    const msg = {
+      id: 'you must insert id',
+    }
+    try {
+      const payload = await ctx.request.validate({
+        schema: VideoLibraryDeleteSchema,
+        messages: msg,
+      })
+      return payload
+    } catch (error) {
+      return ctx.response.status(422).send(error.messages)
+    }
+  }
+
+  //read
+  public async validateVideoLibraryReadSchema(ctx: HttpContextContract) {
     const VideoLibraryDeleteSchema = schema.create({
       id: schema.number(),
     })

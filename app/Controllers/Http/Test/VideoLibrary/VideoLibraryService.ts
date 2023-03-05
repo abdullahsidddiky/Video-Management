@@ -11,6 +11,24 @@ export default class VideoLibraryService {
     return user
   }
   public async createVideoLibraryNew(ctx: HttpContextContract) {
-    const user = await this.createVideoLibraryNew(ctx.request.body)
+    const data = ctx.request.only(['school_id', 'library_name', 'description'])
+
+    await this.videolibraryQuery.createNewVideoLibrary({ data })
+  }
+
+  public async updateVideoLibrary(ctx: HttpContextContract) {
+    const data = ctx.request.only(['id', 'library_name', 'description'])
+    console.log(data)
+
+    await this.videolibraryQuery.updateVideoLibrary({ data })
+  }
+  public async deleteVideoLibrary(ctx: HttpContextContract) {
+    const data = ctx.request.only(['id'])
+    await this.videolibraryQuery.deleteVideoLibrary({ data })
+  }
+  public async readVideoLibrary(ctx: HttpContextContract) {
+    const data = ctx.request.only(['id'])
+    const video = await this.videolibraryQuery.readVideoLibrary({ data })
+    return video
   }
 }
