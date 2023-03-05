@@ -23,3 +23,7 @@ import Route from '@ioc:Adonis/Core/Route'
 Route.get('/', async ({ view }) => {
   return view.render('welcome')
 })
+
+Route.group(() => {
+  Route.get('/read', 'VideoGalleriesController.read')
+}).prefix('something/video_galllery')
