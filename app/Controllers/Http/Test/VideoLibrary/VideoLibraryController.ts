@@ -13,5 +13,8 @@ export default class VideoLibraryController {
     return this.videolibraryService.getVideoLibraryByLimit(ctx)
   }
 
-  public async createVideoLibrary(ctx: HttpContextContract) {}
+  public async createVideoLibrary(ctx: HttpContextContract) {
+    const u = await this.videolibraryValidator.validateVideoLibraryCreateSchema(ctx)
+    //return this.videolibraryService.createVideoLibraryNew(ctx)
+  }
 }
