@@ -8,7 +8,7 @@ export default class extends BaseSchema {
       table.increments('id')
       table.string('title')
       table.string('slug')
-      table.integer('category_name')
+      table.string('category_name')
       table
         .integer('category_id')
         .references('id')

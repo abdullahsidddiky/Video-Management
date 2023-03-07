@@ -19,7 +19,7 @@ export default class VideoGalleryCategoryQuery {
     return User.query().where('id', 1).update({ category_name: data.category_name })
   }
   public async deleteVideoGalleryCategory(data) {
-    return User.query().where('id', 1).delete()
+    return User.query().where('id', data.id).delete()
   }
 }
 //await VideoLibrary.query().where('id', data.id)

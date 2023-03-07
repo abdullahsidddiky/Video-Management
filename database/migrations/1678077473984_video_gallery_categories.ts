@@ -12,7 +12,7 @@ export default class extends BaseSchema {
         .inTable('video_libraries')
         .onDelete('CASCADE')
       table.string('category_name')
-      /**
+      /*
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */
       table.timestamp('created_at', { useTz: true })

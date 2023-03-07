@@ -20,6 +20,7 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 import 'App/Controllers/Http/Test/VideoLibrary/videolibrary'
+import 'App/Controllers/Http/Test/GalleryVideos/galleryvideos'
 import 'App/Controllers/Http/Test/VideoGalleryCategory/videogallerycategory'
 Route.get('/', async ({ view }) => {
   return view.render('welcome')

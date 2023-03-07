@@ -1,6 +1,7 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column, HasMany, hasMany } from '@ioc:Adonis/Lucid/Orm'
 import VideoGalleryCategory from './VideoGalleryCategory'
+import GalleryVideo from './GalleryVideo'
 
 export default class VideoLibrary extends BaseModel {
   @column({ isPrimary: true })
@@ -23,4 +24,6 @@ export default class VideoLibrary extends BaseModel {
 
   @hasMany(() => VideoGalleryCategory)
   public galleries: HasMany<typeof VideoGalleryCategory>
+  @hasMany(() => GalleryVideo)
+  public gallery_videos: HasMany<typeof GalleryVideo>
 }
