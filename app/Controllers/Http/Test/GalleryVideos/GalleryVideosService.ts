@@ -18,6 +18,18 @@ export default class GalleryVideosService {
   public async readVideoGallery(payload) {
     return this.galleryvideosQuery.readVideoGalleryCategory(payload)
   }
+  public async pageBylimitVideoGallery(payload) {
+    return this.galleryvideosQuery.pageBylimitVideoGalleryCategory(payload)
+  }
+
+  public async getVideoByIdVideoGallery(payload) {
+    //return payload
+    return this.galleryvideosQuery.getVideoByIdVideoGalleryCategory(payload)
+  }
+  public async getSuggestedVideoByIdVideoGallery() {
+    //return payload
+    return this.galleryvideosQuery.getSuggestedVideoGalleryCategory()
+  }
 }
 
 //createVideoGalleryCategory

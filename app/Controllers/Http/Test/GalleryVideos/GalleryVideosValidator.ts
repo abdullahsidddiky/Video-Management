@@ -50,4 +50,35 @@ export default class GalleryVideosValidator {
     const payload = await ctx.request.validate({ schema: readSchema, messages: msg })
     return payload
   }
+  public async validateGalleryPageByLimitVideosSchema(ctx: HttpContextContract) {
+    const deleteSchema = schema.create({
+      page: schema.number.optional(),
+      limit: schema.number.optional(),
+      library_id: schema.number(),
+      category_id: schema.number.optional(),
+      search: schema.string.optional(),
+    })
+    const msg = {
+      'page.optional': 'page is optional',
+      'limit.optional': 'limit is optional',
+      'library_id.required': 'library_id is mendatory',
+      'search.optional': 'can be optional',
+      'category_id': 'can be optional',
+    }
+    const payload = await ctx.request.validate({ schema: deleteSchema, messages: msg })
+
+    return payload
+  }
+
+  public async validateGetVideoByIdVideosSchema(ctx: HttpContextContract) {
+    const deleteSchema = schema.create({
+      id: schema.number(),
+    })
+    const msg = {
+      'id.required ': 'id is required',
+    }
+    const payload = await ctx.request.validate({ schema: deleteSchema, messages: msg })
+
+    return payload
+  }
 }

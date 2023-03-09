@@ -18,6 +18,7 @@ export default class GalleryVideosController {
     }
   }
   public async updateGalleryVideos(ctx: HttpContextContract) {
+    //return ctx.request.body()
     try {
       const payload = await this.galleryvideosValidator.validateGalleryUpdateVideosSchema(ctx)
       return this.galleryvideosService.updateVideoGallery(payload)
@@ -35,12 +36,33 @@ export default class GalleryVideosController {
   }
   public async readGalleryVideos(ctx: HttpContextContract) {
     try {
-      const payload = await this.galleryvideosValidator.validateGalleryReadVideosSchema(ctx)
-      console.log(ctx.request.body())
-
+      const payload = await this.galleryvideosValidator.validateGalleryPageByLimitVideosSchema(ctx)
       return this.galleryvideosService.readVideoGallery(payload)
     } catch (error) {
       return error
     }
+  }
+  public async pageBylimitGalleryVideos(ctx: HttpContextContract) {
+    ctx.request.all().library_id = ctx.params.library_id
+    try {
+      const payload = await this.galleryvideosValidator.validateGalleryPageByLimitVideosSchema(ctx)
+      return this.galleryvideosService.pageBylimitVideoGallery(payload)
+    } catch (error) {
+      return error
+    }
+  }
+  public async getVideoByGalleryVideos(ctx: HttpContextContract) {
+    //ctx.request.all().library_id = ctx.params.library_id
+    //return ctx.request.all()
+    try {
+      const payload = await this.galleryvideosValidator.validateGetVideoByIdVideosSchema(ctx)
+      //return payload
+      return this.galleryvideosService.getVideoByIdVideoGallery(payload)
+    } catch (error) {
+      return error
+    }
+  }
+  public async getSuggestedVideoByGalleryVideos() {
+    return this.galleryvideosService.getSuggestedVideoByIdVideoGallery()
   }
 }

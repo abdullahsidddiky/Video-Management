@@ -3,6 +3,7 @@ import VideoGalleryCategory from 'App/Models/VideoGalleryCategory'
 import VideoLibrary from 'App/Models/VideoLibrary'
 import GalleryVideo from 'App/Models/GalleryVideo'
 var slugify = require('slugify')
+var data2
 export default class GalleryVideosQuery {
   public async createVideoGalleryCategory(payload) {
     const library_videos = await VideoLibrary.query().where('id', payload.gallery_id).first()
@@ -22,6 +23,7 @@ export default class GalleryVideosQuery {
     return GalleryVideo.create(payload)
   }
   public async updateVideoGalleryCategory(payload) {
+    //return payload
     return await GalleryVideo.query().where('id', payload.id).update({ title: payload.title })
     //return User.query().where('id', 1).update({ category_name: data.category_name })
   }
@@ -32,5 +34,44 @@ export default class GalleryVideosQuery {
   public async readVideoGalleryCategory(payload) {
     return await GalleryVideo.query().where('school_id', payload.school_id)
     //return User.query().where('id', 1).update({ category_name: data.category_name })
+  }
+  public async pageBylimitVideoGalleryCategory(payload) {
+    var page = 1
+    if (payload.page) {
+      page = payload.page
+    }
+    var limit = 1
+    if (payload.limit) {
+      limit = payload.limit
+    }
+    //return payload
+    const data = GalleryVideo.query().where('gallery_id', payload.library_id)
+    if (payload.category_id) {
+      data.where('category_id', payload.category_id)
+    }
+    if (payload.search) {
+      data.where('title', 'like', `%${payload.search}%`)
+    }
+    //`%${payload.title}%`
+    return await data.paginate(page, limit)
+  }
+
+  public async getVideoByIdVideoGalleryCategory(payload) {
+    const data = await GalleryVideo.query().where('id', payload.id).first()
+
+    if (data) {
+      data2 = GalleryVideo.query().where('id', '<>', data.id)
+    }
+    if (data && data.category) {
+      data2 = await data2.where('category_id', data?.category_id)
+    }
+    //data2 = await data2.where('category_id', data?.category_id)
+
+    return data
+  }
+  public async getSuggestedVideoGalleryCategory() {
+    // /console.log(data2)
+
+    return data2
   }
 }
