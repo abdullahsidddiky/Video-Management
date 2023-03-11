@@ -11,7 +11,7 @@ export const VideoGalleryFactory = Factory.define(GalleryVideo, ({ faker }) => {
     gallery_id: parseInt(faker.random.numeric(1)),
     category_id: parseInt(faker.random.numeric(1)),
     video_link: faker.image.avatar(),
-    views_count: parseInt(faker.random.numeric()),
+    views_count: parseInt(faker.random.numeric(3)),
     createdAt: DateTime.local(),
     updatedAt: DateTime.local(),
   }
